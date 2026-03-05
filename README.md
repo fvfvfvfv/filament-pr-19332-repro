@@ -21,7 +21,7 @@ The notification never appears. The user gets no feedback that anything went wro
 ### Setup
 
 ```bash
-git clone <this-repo>
+git clone https://github.com/fvfvfvfv/filament-pr-19332-repro.git
 cd filament-pr-19332
 composer install
 npm install
@@ -30,7 +30,7 @@ cp .env.example .env   # or use the committed .env
 php artisan key:generate
 php artisan migrate
 php artisan db:seed --class=AdminUserSeeder
-php artisan serve --host=0.0.0.0 --port=8000
+php artisan serve --host=0.0.0.0 --port=8001
 ```
 
 ### Reproduce
@@ -50,7 +50,7 @@ php artisan serve --host=0.0.0.0 --port=8000
 
 ### Verify it works on localhost
 
-Open `http://localhost:8000/admin` and click the button — the error notification appears correctly. This confirms the issue is the secure context requirement of `crypto.randomUUID()`.
+Open `http://localhost:8000/admin` and click the button and the error notification appears correctly. This confirms the issue is the secure context requirement of `crypto.randomUUID()`.
 
 ## Expected Behavior
 
@@ -67,4 +67,4 @@ A danger notification should be displayed to the user regardless of whether the 
 
 `crypto.randomUUID()` was introduced as a replacement for `uuid-browser` in PR #19332. Unlike `crypto.getRandomValues()`, the `randomUUID()` method is restricted to secure contexts per the [Web Cryptography API spec](https://www.w3.org/TR/WebCryptoAPI/).
 
-This affects any Filament application served over plain HTTP — including local development environments accessed via a local network IP or a `.test` / `.local` hostname that is not `localhost`.
+This affects any Filament application served over plain HTTP, including local development environments accessed via a local network IP or a `.test` / `.local` hostname that is not `localhost`.
