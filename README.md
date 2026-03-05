@@ -22,7 +22,7 @@ The notification never appears. The user gets no feedback that anything went wro
 
 ```bash
 git clone https://github.com/fvfvfvfv/filament-pr-19332-repro.git
-cd filament-pr-19332
+cd filament-pr-19332-repro
 composer install
 npm install
 npm run build
