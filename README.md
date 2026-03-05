@@ -39,7 +39,7 @@ php artisan serve --host=0.0.0.0 --port=8001
 > Browsers treat `localhost` as a secure context, which would not reproduce the bug.
 
 1. Find your local IP address (`ip addr`, `ifconfig`, or `ipconfig` on Windows).
-2. Open `http://YOUR_LOCAL_IP:8000/admin` in your browser.
+2. Open `http://YOUR_LOCAL_IP:8001/admin` in your browser.
 3. Log in with `admin@example.com` / `password`.
 4. Click the **"Trigger 500 (reproduce #19332)"** button on the dashboard.
 5. Open the browser console — you will see:
@@ -50,7 +50,7 @@ php artisan serve --host=0.0.0.0 --port=8001
 
 ### Verify it works on localhost
 
-Open `http://localhost:8000/admin` and click the button and the error notification appears correctly. This confirms the issue is the secure context requirement of `crypto.randomUUID()`.
+Open `http://localhost:8001/admin` and click the button and the error notification appears correctly. This confirms the issue is the secure context requirement of `crypto.randomUUID()`.
 
 ## Expected Behavior
 
